@@ -218,7 +218,7 @@ fetch('http://localhost:5000/api/posts/post_id', {
 ### Backend (.env)
 ```
 MONGO_URI=mongodb://localhost:27017/blog
-OPENAI_API_KEY=your_openai_api_key
+GENERATIVE_API_KEY=your_gemini_api_key
 PORT=5000
 ```
 
