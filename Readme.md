@@ -237,3 +237,11 @@ The API returns errors in the following format:
   stack: string       // Stack trace (development only)
 }
 ```
+Home Page
+![image](https://github.com/user-attachments/assets/8a66f1ec-c3a3-48c2-98fc-626a2b4af792)
+
+Create Post
+![image](https://github.com/user-attachments/assets/82f23121-2819-4fae-bda5-8d4fb08358d5)
+
+Update Post
+![image](https://github.com/user-attachments/assets/9908347b-7df6-4cd2-b90f-813b2b30b14a)
