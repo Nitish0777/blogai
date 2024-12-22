@@ -16,7 +16,7 @@ const BlogPost = () => {
   const fetchPosts = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch('/api/posts');
+      const response = await fetch('http://localhost:5000/api/posts');
       const data = await response.json();
       setPosts(data);
     } catch (error) {
@@ -30,7 +30,7 @@ const BlogPost = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const url = editing ? `/api/posts/${editing}` : '/api/posts';
+      const url = editing ? `http://localhost:5000/api/posts/${editing}` : 'http://localhost:5000/api/posts';
       const method = editing ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -57,7 +57,7 @@ const BlogPost = () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
         setIsLoading(true);
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
           method: 'DELETE',
         });
         if (response.ok) {

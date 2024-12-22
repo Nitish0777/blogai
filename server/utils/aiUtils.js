@@ -1,23 +1,30 @@
-const OpenAI = require('openai');
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
+const axios = require('axios');
 
 const generateSummary = async (content) => {
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{
-        role: "system",
-        content: "Generate a brief summary of the following blog post content:"
-      }, {
-        role: "user",
-        content: content
-      }],
-      max_tokens: 150
-    });
-
-    return response.choices[0].message.content.trim();
+    console.log('Generating summary for:', content);
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GENERATIVE_API_KEY}`,
+      {
+        contents: [
+          {
+            parts: [{ text: content }],
+          },
+        ],
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    console.log('Summary generated:', response.data);
+    
+    // Ensure the summary text is extracted correctly
+    const summary = response.data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    return summary || 'No summary generated';
   } catch (error) {
-    console.error('Error generating summary:', error);
+    console.error('Error generating summary:', error.response?.data || error.message);
     return 'Summary generation failed';
   }
 };
